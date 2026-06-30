@@ -7,13 +7,16 @@ const profileModules = import.meta.glob<ProfileDetailResponse>(
 export async function loadProfileByUsername(
   username: string
 ): Promise<ProfileDetailResponse | null> {
-  const path = `../assets/data/profiles/${username}.json`;
-  const loader = profileModules[path];
+  const targetPath = `../assets/data/profiles/${username.toLowerCase()}.json`;
+  const matchingKey = Object.keys(profileModules).find(
+    (key) => key.toLowerCase() === targetPath
+  );
 
-  if (!loader) {
+  if (!matchingKey) {
     return null;
   }
 
+  const loader = profileModules[matchingKey];
   const result = await loader();
   const data =
     (result as { default?: ProfileDetailResponse }).default ?? result;
