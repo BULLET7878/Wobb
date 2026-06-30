@@ -16,7 +16,7 @@ import {
   Eye,
   Activity,
   Plus,
-  Check,
+  X,
   ExternalLink,
   ChevronRight
 } from "lucide-react";
