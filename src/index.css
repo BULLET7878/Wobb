@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
+/* ============================================
+   GLOBAL BODY & FONTS
+   ============================================ */
 body {
   background-color: #080710;
   color: #f3f4f6;
-  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 
-/* Glassmorphism base classes */
+/* ============================================
+   GLASSMORPHISM DESIGN SYSTEM
+   ============================================ */
 .glass-panel {
   background: rgba(15, 14, 23, 0.7);
   backdrop-filter: blur(16px);
@@ -43,73 +48,79 @@ body {
   outline: none;
 }
 
-/* Custom Scrollbar */
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: rgba(13, 12, 20, 0.3);
 }
-
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 9999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(168, 85, 247, 0.4);
 }
 
-/* Gradients and animations */
+/* ============================================
+   TEXT GRADIENT UTILITY
+   ============================================ */
 .text-gradient {
   background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #6366f1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.glow-indigo {
-  box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.15);
-}
-
-.glow-purple {
-  box-shadow: 0 0 50px -10px rgba(168, 85, 247, 0.15);
-}
-
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes slideIn {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
 }
-
 .animate-slide-in {
   animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-
 .animate-fade-in {
   animation: fadeIn 0.25s ease-out forwards;
 }
 
-/* Platform Specific Brand Styles */
-.instagram-glow {
-  box-shadow: 0 0 30px -10px rgba(219, 39, 119, 0.2);
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.youtube-glow {
-  box-shadow: 0 0 30px -10px rgba(220, 38, 38, 0.2);
+.animate-fade-up {
+  animation: fadeUp 0.35s ease-out forwards;
 }
-.tiktok-glow {
-  box-shadow: 0 0 30px -10px rgba(6, 182, 212, 0.2);
+
+/* ============================================
+   FOCUS ACCESSIBILITY
+   ============================================ */
+:focus-visible {
+  outline: 2px solid rgba(168, 85, 247, 0.7);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
