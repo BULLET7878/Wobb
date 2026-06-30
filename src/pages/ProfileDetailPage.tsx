@@ -86,7 +86,11 @@ export function ProfileDetailPage() {
     );
   }
 
-  const user: FullUserProfile = profileData.data.user_profile;
+  const rawUser = profileData.data.user_profile;
+  const user: FullUserProfile = {
+    ...rawUser,
+    username: rawUser.username || rawUser.handle || rawUser.custom_name || rawUser.user_id,
+  };
   const platform = (user.type || searchParams.get("platform") || "instagram") as Platform;
   const saved = isSaved(user.user_id);
 
