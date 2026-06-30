@@ -78,3 +78,47 @@ Complete the following as part of your submission:
 - **Bonus:** Deploying the app (e.g. Vercel, Netlify, GitHub Pages) is optional but will be considered a plus — include the live URL in your submission if you do
 
 Good luck!
+
+---
+
+# Candidate Submission Notes
+
+I have successfully resolved all starter issues and delivered a premium, high-performance web dashboard.
+
+## Key Changes & Bug Fixes
+
+1. **Bug: Case-Sensitive Username Filtering** (`src/utils/dataHelpers.ts`)
+   - **Issue:** Query searches matched username case-sensitively while full name was case-insensitive.
+   - **Fix:** Converted the username matching check to lowercase to ensure a consistent, case-insensitive search experience.
+
+2. **Bug: Miscalculated Engagement Rate** (`src/pages/ProfileDetailPage.tsx`)
+   - **Issue:** The detail page multiplied the raw engagement rate decimal (e.g., `0.01425`) by `10000` (yielding `142.50%` instead of `1.43%`).
+   - **Fix:** Standardized to use the consolidated formatter, which correctly multiplies by `100` and fixes standard decimal rounding.
+
+3. **Bug: Stale Click Count Console Logging** (`src/pages/SearchPage.tsx`)
+   - **Issue:** The `handleProfileClick` method logged `clickCount` before the state update took effect.
+   - **Fix:** Completely refactored `SearchPage.tsx` navigation actions and removed this unused, buggy counter logic.
+
+4. **Bug: Engagements Metric Displaying Rate** (`src/pages/ProfileDetailPage.tsx`)
+   - **Issue:** The detail card for "Engagements" displayed the formatted engagement rate percentage instead of the raw engagements count.
+   - **Fix:** Updated the bindings to correctly format and display the total engagements count.
+
+5. **Consolidated Formatters** (`src/utils/formatters.ts`)
+   - Cleaned up duplicated follower/view formatters that were scattered in different local files and unified them.
+
+## Zustand State Store & Persistent List
+
+- Installed and integrated `zustand` to replace the React Context stub.
+- Created `src/store/useInfluencerStore.ts` using Zustand's `persist` middleware to persist selected creators in `localStorage` across page reloads.
+- Developed an interactive slide-over drawer (`SavedInfluencerDrawer.tsx`) to inspect saved creators, aggregate outreach reach (total followers), and compute average engagement rate.
+- Added quick export tools:
+  - **Copy Handles:** Copies all selected handles (e.g. `@mrbeast, @cristiano`) with success state alerts.
+  - **Export CSV / JSON:** Triggers instant downloads of formatted spreadsheets and data packets for outreach campaigns.
+
+## UI/UX Redesign (Tailwind CSS v4)
+
+- **Root Dark Theme:** Overhauled the basic layout to implement an ultra-premium dark theme with deep purples, neon accents, and clean layout hierarchies.
+- **Glassmorphism:** Styled search containers, card wrappers, and sidebar sheets with frosted glass panels (`backdrop-filter`) and violet glowing borders.
+- **Platform Accents:** Provided custom glow colors, overlays, and outline rings tailored specifically to platform brands: pink-purple for Instagram, red for YouTube, and aquamarine for TikTok.
+- **Responsive Layout:** Engineered responsive grids, transitions, and slide-in panels to adapt cleanly to all screen sizes.
+
