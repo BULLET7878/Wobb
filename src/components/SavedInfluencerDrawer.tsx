@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useInfluencerStore } from "@/store/useInfluencerStore";
 import { formatFollowersDetail, formatEngagementRate } from "@/utils/formatters";
 import { getPlatformLabel } from "@/utils/dataHelpers";
-import { X, Trash2, Copy, Download, Sparkles, ExternalLink, RefreshCw } from "lucide-react";
+import { X, Trash2, Copy, Download, Sparkles, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Platform } from "@/types";
 
