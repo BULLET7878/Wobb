@@ -2,8 +2,8 @@
 
 A modern, premium influencer search and campaign management dashboard built with **React 19**, **TypeScript**, **Vite**, and **Tailwind CSS v4**.
 
-> 🔗 **Repository:** https://github.com/BULLET7878/Wobb
-> 🔗 **Live Link (vercel)**  
+> 🔗 **Repository:** https://github.com/BULLET7878/Wobb  
+> 🚀 **Live Demo:** https://wobb-phi.vercel.app
 
 ---
 
@@ -32,6 +32,9 @@ Open [http://localhost:5173](http://localhost:5173) to view the app.
 | Platform not resolved when query param is missing | `pages/ProfileDetailPage.tsx` | Falls back to `user.type` field from JSON data |
 | Duplicate formatter logic scattered across components | Multiple files | Consolidated into `utils/formatters.ts` |
 | Unused `SearchBar.tsx` component | Removed | Component was never rendered anywhere in the app |
+| Page refresh 404 on Vercel (`/profile/:username`) | `vercel.json` | Added SPA rewrite rule so all routes fall back to `index.html` |
+| Unused assets committed (`react.svg`, `vite.svg`, `hero.png`, `icons.svg`) | Removed from repo | Default Vite template files never referenced in code |
+| Unused `react-beautiful-dnd` in `package.json` | Removed | Dependency was listed but never imported — removed to reduce bundle |
 
 ---
 
@@ -129,6 +132,21 @@ const useInfluencerStore = create(
 - **Platform detection** — the `platform` for a profile detail page is inferred from the profile JSON's `type` field, with a fallback to the URL query param, then to `"instagram"`.
 - **No pagination** — the search data contains 10 results per platform, which fits within one view. Pagination was not implemented since the data set is small.
 - **No authentication** — the list is stored in `localStorage` and is therefore local to the user's browser session.
+
+---
+
+## Remaining Improvements
+
+Given more time, the following could further improve the project:
+
+- **Pagination / infinite scroll** — the current data set is small (10 per platform) but a real API would need paginated results
+- **Unit & integration tests** — add Vitest + React Testing Library coverage for store logic, filter functions, and key components
+- **Skeleton loading states** — replace the spinner on the profile detail page with content-shaped skeleton placeholders
+- **Drag-to-reorder in Campaign List** — allow users to reorder saved influencers (this is why `react-beautiful-dnd` was originally included but never implemented)
+- **Search debouncing** — add a small debounce (~150ms) to the search input to reduce unnecessary filter passes on fast typists
+- **Image fallback** — handle broken profile picture URLs gracefully with a placeholder avatar
+- **Dark/Light mode toggle** — extend the design system to support a light theme
+- **Export improvements** — add a copy-as-table and Excel (`.xlsx`) export option via a library like `exceljs`
 
 ---
 
