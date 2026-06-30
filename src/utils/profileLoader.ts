@@ -1,12 +1,12 @@
-import type { ProfileDetailResponse } from "@/types";
+import type { DetailResponse } from "@/types";
 
-const profileModules = import.meta.glob<ProfileDetailResponse>(
+const profileModules = import.meta.glob<DetailResponse>(
   "../assets/data/profiles/*.json"
 );
 
 export async function loadProfileByUsername(
   username: string
-): Promise<ProfileDetailResponse | null> {
+): Promise<DetailResponse | null> {
   const targetPath = `../assets/data/profiles/${username.toLowerCase()}.json`;
   const matchingKey = Object.keys(profileModules).find(
     (key) => key.toLowerCase() === targetPath
@@ -19,6 +19,6 @@ export async function loadProfileByUsername(
   const loader = profileModules[matchingKey];
   const result = await loader();
   const data =
-    (result as { default?: ProfileDetailResponse }).default ?? result;
-  return data as ProfileDetailResponse;
+    (result as { default?: DetailResponse }).default ?? result;
+  return data as DetailResponse;
 }

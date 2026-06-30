@@ -1,16 +1,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Platform, UserProfileSummary } from "@/types";
+import type { Platform, CreatorProfile } from "@/types";
 
 export interface SavedInfluencer {
-  profile: UserProfileSummary;
+  profile: CreatorProfile;
   platform: Platform;
   addedAt: string;
 }
 
 interface InfluencerStore {
   savedInfluencers: SavedInfluencer[];
-  addInfluencer: (profile: UserProfileSummary, platform: Platform) => void;
+  addInfluencer: (profile: CreatorProfile, platform: Platform) => void;
   removeInfluencer: (userId: string) => void;
   clearList: () => void;
   isSaved: (userId: string) => boolean;

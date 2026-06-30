@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { VerifiedBadge } from "@/components/VerifiedBadge";
-import type { FullUserProfile, ProfileDetailResponse, Platform } from "@/types";
+import type { CreatorDetail, DetailResponse, Platform } from "@/types";
 import { formatEngagementRate, formatFollowersDetail, formatNumber } from "@/utils/formatters";
 import { loadProfileByUsername } from "@/utils/profileLoader";
 import { useInfluencerStore } from "@/store/useInfluencerStore";
@@ -24,7 +24,7 @@ import {
 export function ProfileDetailPage() {
   const { username } = useParams<{ username: string }>();
   const [searchParams] = useSearchParams();
-  const [profileData, setProfileData] = useState<ProfileDetailResponse | null>(null);
+  const [profileData, setProfileData] = useState<DetailResponse | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   const { addInfluencer, removeInfluencer, isSaved } = useInfluencerStore();
@@ -87,7 +87,7 @@ export function ProfileDetailPage() {
   }
 
   const rawUser = profileData.data.user_profile;
-  const user: FullUserProfile = {
+  const user: CreatorDetail = {
     ...rawUser,
     username: rawUser.username || rawUser.handle || rawUser.custom_name || rawUser.user_id,
   };

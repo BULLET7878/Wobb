@@ -1,19 +1,19 @@
 import instagramData from "@/assets/data/search/instagram.json";
 import youtubeData from "@/assets/data/search/youtube.json";
 import tiktokData from "@/assets/data/search/tiktok.json";
-import type { Platform, SearchData, UserProfileSummary } from "@/types";
+import type { Platform, SearchResponse, CreatorProfile } from "@/types";
 
-const platformData: Record<Platform, SearchData> = {
-  instagram: instagramData as SearchData,
-  youtube: youtubeData as SearchData,
-  tiktok: tiktokData as SearchData,
+const platformData: Record<Platform, SearchResponse> = {
+  instagram: instagramData as SearchResponse,
+  youtube: youtubeData as SearchResponse,
+  tiktok: tiktokData as SearchResponse,
 };
 
-export function getSearchData(platform: Platform): SearchData {
+export function getSearchData(platform: Platform): SearchResponse {
   return platformData[platform];
 }
 
-export function extractProfiles(platform: Platform): UserProfileSummary[] {
+export function extractProfiles(platform: Platform): CreatorProfile[] {
   const data = getSearchData(platform);
   return data.accounts.map((item) => {
     const profile = item.account.user_profile;
@@ -25,9 +25,9 @@ export function extractProfiles(platform: Platform): UserProfileSummary[] {
 }
 
 export function filterProfiles(
-  profiles: UserProfileSummary[],
+  profiles: CreatorProfile[],
   query: string
-): UserProfileSummary[] {
+): CreatorProfile[] {
   if (!query) return profiles;
   const lowercaseQuery = query.toLowerCase();
   return profiles.filter((p) => {

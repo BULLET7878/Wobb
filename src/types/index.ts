@@ -1,6 +1,6 @@
 export type Platform = "instagram" | "youtube" | "tiktok";
 
-export interface UserProfileSummary {
+export interface CreatorProfile {
   user_id: string;
   username: string;
   url: string;
@@ -15,19 +15,19 @@ export interface UserProfileSummary {
   custom_name?: string;
 }
 
-export interface SearchAccount {
+export interface SearchResultAccount {
   account: {
-    user_profile: UserProfileSummary;
+    user_profile: CreatorProfile;
     audience_source: string;
   };
 }
 
-export interface SearchData {
+export interface SearchResponse {
   total: number;
-  accounts: SearchAccount[];
+  accounts: SearchResultAccount[];
 }
 
-export interface FullUserProfile extends UserProfileSummary {
+export interface CreatorDetail extends CreatorProfile {
   type?: string;
   description?: string;
   is_business?: boolean;
@@ -39,10 +39,10 @@ export interface FullUserProfile extends UserProfileSummary {
   age_group?: string;
 }
 
-export interface ProfileDetailResponse {
+export interface DetailResponse {
   cached?: boolean;
   data: {
     success: boolean;
-    user_profile: FullUserProfile;
+    user_profile: CreatorDetail;
   };
 }

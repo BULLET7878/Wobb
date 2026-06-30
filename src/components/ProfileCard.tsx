@@ -1,13 +1,13 @@
 import { memo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import type { Platform, UserProfileSummary } from "@/types";
+import type { Platform, CreatorProfile } from "@/types";
 import { VerifiedBadge } from "./VerifiedBadge";
 import { useInfluencerStore } from "@/store/useInfluencerStore";
 import { formatFollowers } from "@/utils/formatters";
 import { Plus, Check, Users } from "lucide-react";
 
 interface ProfileCardProps {
-  profile: UserProfileSummary;
+  profile: CreatorProfile;
   platform: Platform;
   searchQuery: string;
   onProfileClick?: (username: string) => void;
