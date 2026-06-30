@@ -24,7 +24,6 @@ import {
 export function ProfileDetailPage() {
   const { username } = useParams<{ username: string }>();
   const [searchParams] = useSearchParams();
-  const platform = (searchParams.get("platform") || "instagram") as Platform;
   const [profileData, setProfileData] = useState<ProfileDetailResponse | null>(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -88,6 +87,7 @@ export function ProfileDetailPage() {
   }
 
   const user: FullUserProfile = profileData.data.user_profile;
+  const platform = (user.type || searchParams.get("platform") || "instagram") as Platform;
   const saved = isSaved(user.user_id);
 
   const handleToggleSave = () => {
